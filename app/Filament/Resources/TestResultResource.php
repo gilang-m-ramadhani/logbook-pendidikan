@@ -22,68 +22,71 @@ class TestResultResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('test_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('dosen_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('nilai')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\Textarea::make('feedback')
-                    ->columnSpanFull(),
-            ]);
-    }
+        ->schema([
+            Forms\Components\Select::make('test_id')
+                ->relationship('test', 'judul')
+                ->label('Test')
+                ->required()
+                ->native(false),
+            Forms\Components\Select::make('user_id')
+                ->relationship('user', 'name')
+                ->label('Peserta')
+                ->searchable()
+                ->required()
+                ->native(false),
+            Forms\Components\Select::make('dosen_id')
+                ->relationship('dosen', 'name')
+                ->label('Dosen')
+                ->searchable()
+                ->required()
+                ->native(false),
+            Forms\Components\TextInput::make('nilai')
+                ->numeric()
+                ->minValue(0)
+                ->maxValue(100)
+                ->required(),
+            Forms\Components\RichEditor::make('feedback')
+                ->columnSpanFull(),
+        ]);
+}
 
-    public static function table(Table $table): Table
-    {
-        return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('test_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('dosen_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('nilai')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
+public static function table(Table $table): Table
+{
+    return $table
+        ->columns([
+            Tables\Columns\TextColumn::make('test.judul')
+                ->searchable()
+                ->sortable(),
+            Tables\Columns\TextColumn::make('user.name')
+                ->label('Mahasiswa')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('dosen.name')
+                ->label('Dosen')
+                ->searchable(),
+            Tables\Columns\TextColumn::make('nilai')
+                ->sortable()
+                ->color(fn (int $state): string => match (true) {
+                    $state >= 80 => 'success',
+                    $state >= 60 => 'warning',
+                    default => 'danger',
+                }),
+            Tables\Columns\TextColumn::make('created_at')
+                ->dateTime()
+                ->sortable(),
+        ])
+        ->filters([
+            Tables\Filters\SelectFilter::make('test')
+                ->relationship('test', 'judul')
+                ->multiple()
+                ->searchable(),
+            Tables\Filters\SelectFilter::make('user')
+                ->relationship('user', 'name')
+                ->searchable(),
+        ])
+        ->actions([
+            Tables\Actions\ViewAction::make(),
+            Tables\Actions\EditAction::make(),
+        ]);
     }
 
     public static function getPages(): array

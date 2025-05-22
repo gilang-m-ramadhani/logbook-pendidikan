@@ -12,7 +12,7 @@ class LogbookController extends Controller
      */
     public function index()
     {
-        //
+        return view('mahasiswa.dashboard');
     }
 
     /**

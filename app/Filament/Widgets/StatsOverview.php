@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\WidgetsResource\Widgets;
+namespace App\Filament\Widgets;
 
 use App\Models\User;
 use App\Models\LogEntry;

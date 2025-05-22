@@ -5,7 +5,6 @@ namespace App\Providers\Filament;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
-use Widgets\StatsOverview;
 use Filament\PanelProvider;
 use Filament\Widgets\Widget;
 use Filament\Support\Colors\Color;
@@ -36,6 +35,9 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->passwordReset()
+            ->emailVerification()
+            ->profile()
             ->colors([
                 'primary' => Color::Blue,
                 'danger' => Color::Rose,
@@ -58,15 +60,15 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([
+            ->widgets(widgets: [
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
-                Widgets\StatsOverview::class,
+                Widgets\StatsOverviewWidget::class,
             ])
             ->navigationGroups([
-            'User Management',
-            'Logbook Management',
-            'Test Management',
+                'User Management',
+                'Logbook Management',
+                'Test Management',
             ])
             ->middleware([
                 EncryptCookies::class,

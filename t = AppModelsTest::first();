@@ -1,0 +1,27 @@
+[90m= [39m[
+    {#7318
+      +"[1mid[22m": [35m1[39m,
+      +"[1mjenis[22m": "[32mpre-test[39m",
+      +"[1mjudul[22m": "[32mPre-Test Semester 1[39m",
+      +"[1mdeskripsi[22m": "[32mTest awal untuk mengukur pengetahuan dasar[39m",
+      +"[1msoal[22m": "[32m[][39m",
+      +"[1mpaket_soal[22m": "[32m[{"nama_paket":"Paket A","soal":[{"pertanyaan":"Apa yang dimaksud dengan anamnesis?","pilihan":[{"text":"Proses pembedahan","benar":false},{"text":"Pengambilan riwayat kesehatan pasien","benar":true},{"text":"Pemeriksaan laboratorium","benar":false},{"text":"Terapi fisik","benar":false}],"bobot":1}]}][39m",
+      +"[1mcreated_at[22m": "[32m2025-05-21 01:39:49[39m",
+      +"[1mupdated_at[22m": "[32m2025-05-21 01:39:49[39m",
+      +"[1macak_soal[22m": [35m1[39m,
+      +"[1macak_pilihan[22m": [35m1[39m,
+    },
+    {#7317
+      +"[1mid[22m": [35m2[39m,
+      +"[1mjenis[22m": "[32mpost-test[39m",
+      +"[1mjudul[22m": "[32mPost-Test Semester 1[39m",
+      +"[1mdeskripsi[22m": "[32mTest akhir untuk mengukur pencapaian belajar[39m",
+      +"[1msoal[22m": "[32m[][39m",
+      +"[1mpaket_soal[22m": [36mnull[39m,
+      +"[1mcreated_at[22m": "[32m2025-05-21 01:39:49[39m",
+      +"[1mupdated_at[22m": "[32m2025-05-21 01:39:49[39m",
+      +"[1macak_soal[22m": [35m1[39m,
+      +"[1macak_pilihan[22m": [35m1[39m,
+    },
+  ]
+

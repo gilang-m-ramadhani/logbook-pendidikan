@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('judul');
             $table->text('deskripsi');
             $table->json('soal'); // {soal1: {pertanyaan: '', opsi: [], jawaban: ''}}
+            $table->json('paket_soal')->nullable();
             $table->timestamps();
         });
     }
